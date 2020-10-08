@@ -1,4 +1,4 @@
-# Sindu Music Player 
+<h1 align="center"> Sindu Music Player </h1>
 <h3 align="center">A music player desktop application developed using Java. </h3>
 
 <p align="center">
