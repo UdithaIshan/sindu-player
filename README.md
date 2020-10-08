@@ -7,8 +7,7 @@
 
 Screenshots:
 
-<p align="center>
-          <img alt="Issues" src="https://github.com/UdithaIshan/sindu/blob/master/screenshots/Annotation%202020-10-08%20002958.png" />
-</p>
+![ss](https://github.com/UdithaIshan/sindu/blob/master/screenshots/Annotation%202020-10-08%20002958.png)
+
 
 
