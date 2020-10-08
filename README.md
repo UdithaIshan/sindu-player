@@ -1,5 +1,7 @@
 # Sindu Music Player 
-A simple music player desktop application developed using Java
+A music player desktop application developed using Java.
+
+<img alt="Issues" src="https://img.shields.io/badge/Development-Ongoing-brightgreen" />
 
 Screenshots:
 
