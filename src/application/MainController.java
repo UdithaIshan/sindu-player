@@ -27,9 +27,9 @@ public class MainController {
 	FilterInputStream FIS;
 	BufferedInputStream BIS;
 	
-	public Player sinduPlayer;
+	Player sinduPlayer;
 	
-	public void stop() {
+	private void stop() {
 		if(sinduPlayer != null) {
 			sinduPlayer.close();
 		}
@@ -49,6 +49,10 @@ public class MainController {
 	private Media me;
 	
 	public void playBtnAction(ActionEvent event) {	
+	}
+	
+	public void stopMouseRelease() {
+		stop();
 	}
 }
 
