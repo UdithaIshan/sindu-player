@@ -41,10 +41,22 @@ public class MainController {
 		try {
 			FIS = new FileInputStream(filePath);
 			BIS = new BufferedInputStream(FIS);
-		} catch (FileNotFoundException e) {
+			sinduPlayer = new Player(BIS);
+		} catch (FileNotFoundException | JavaLayerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		new Thread() {
+			@Override
+			public void run() {
+				try {
+					sinduPlayer.play();
+				} catch (JavaLayerException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}.start();
 	}
 	
 	
@@ -65,6 +77,10 @@ public class MainController {
 	
 	public void stopMouseRelease() {
 		stop();
+	}
+	
+	public void playMouseRelease() {
+		play("E:\\Music\\Dátha_Dara_-Ridma_Weerawardane__Dhanith_Sri__Methun_SK__Supun_Perera__Dinesh_Gamage__Dinupa_Kodagoda.mp3");
 	}
 }
 
