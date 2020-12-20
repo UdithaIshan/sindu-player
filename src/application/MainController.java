@@ -33,6 +33,8 @@ public class MainController {
 	Player sinduPlayer;
 	
 	private long pauseLocation;
+	private long songLength;
+	private String location;
 	
 	private void stop() {
 		if(sinduPlayer != null) {
@@ -52,12 +54,37 @@ public class MainController {
 		}
 	}
 	
+	private void resume() {
+		try {
+			FIS = new FileInputStream(location);
+			FIS.skip(songLength - pauseLocation);
+			BIS = new BufferedInputStream(FIS);
+			sinduPlayer = new Player(BIS);
+		} catch (JavaLayerException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		new Thread() {
+			@Override
+			public void run() {
+				try {
+					sinduPlayer.play();
+				} catch (JavaLayerException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}.start();
+	}
+	
 	private void play(String filePath) {
 		try {
 			FIS = new FileInputStream(filePath);
 			BIS = new BufferedInputStream(FIS);
+			location = filePath;
+			songLength = FIS.available();
 			sinduPlayer = new Player(BIS);
-		} catch (FileNotFoundException | JavaLayerException e) {
+		} catch (JavaLayerException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
