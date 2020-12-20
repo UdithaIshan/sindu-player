@@ -2,6 +2,8 @@ package application;
 
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FilterInputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ import javazoom.jl.player.Player;
 
 public class MainController {
 	
-	FilterInputStream FIS;
+	FileInputStream FIS;
 	BufferedInputStream BIS;
 	
 	Player sinduPlayer;
@@ -33,6 +35,28 @@ public class MainController {
 		if(sinduPlayer != null) {
 			sinduPlayer.close();
 		}
+	}
+	
+	private void play(String filePath) {
+		try {
+			FIS = new FileInputStream(filePath);
+			BIS = new BufferedInputStream(FIS);
+			sinduPlayer = new Player(BIS);
+		} catch (FileNotFoundException | JavaLayerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		new Thread() {
+			@Override
+			public void run() {
+				try {
+					sinduPlayer.play();
+				} catch (JavaLayerException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}.start();
 	}
 	
 	
@@ -53,6 +77,10 @@ public class MainController {
 	
 	public void stopMouseRelease() {
 		stop();
+	}
+	
+	public void playMouseRelease() {
+		play("E:\\Music\\Dátha_Dara_-Ridma_Weerawardane__Dhanith_Sri__Methun_SK__Supun_Perera__Dinesh_Gamage__Dinupa_Kodagoda.mp3");
 	}
 }
 
