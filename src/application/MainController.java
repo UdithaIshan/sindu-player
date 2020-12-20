@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FilterInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +32,23 @@ public class MainController {
 	
 	Player sinduPlayer;
 	
+	private long pauseLocation;
+	
 	private void stop() {
 		if(sinduPlayer != null) {
 			sinduPlayer.close();
+		}
+	}
+	
+	private void pause() {
+		if(sinduPlayer != null) {
+			try {
+				pauseLocation = FIS.available();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+;			sinduPlayer.close();
 		}
 	}
 	
@@ -81,6 +96,9 @@ public class MainController {
 	
 	public void playMouseRelease() {
 		play("E:\\Music\\Dátha_Dara_-Ridma_Weerawardane__Dhanith_Sri__Methun_SK__Supun_Perera__Dinesh_Gamage__Dinupa_Kodagoda.mp3");
+	}
+	public void pauseMouseRelese() {
+		pause();
 	}
 }
 
