@@ -1,6 +1,8 @@
 package application;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FilterInputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,19 @@ import javazoom.jl.decoder.*;
 import javazoom.jl.player.Player;
 
 public class MainController {
+	
+	FilterInputStream FIS;
+	BufferedInputStream BIS;
+	
+	public Player sinduPlayer;
+	
+	public void stop() {
+		if(sinduPlayer != null) {
+			sinduPlayer.close();
+		}
+	}
+	
+	
 	@FXML 
 	private Button openBtn;
 	
