@@ -8,6 +8,6 @@
       <Button fx:id="openBtn" layoutX="96.0" layoutY="127.0" mnemonicParsing="false" onAction="" text="Open" />
       <Button fx:id="playBtn" layoutX="174.0" layoutY="127.0" mnemonicParsing="false" onAction="#playBtnAction" prefHeight="25.0" prefWidth="45.0" text="Play" />
       <Button layoutX="248.0" layoutY="127.0" mnemonicParsing="false" text="Pause" />
-      <Button layoutX="327.0" layoutY="127.0" mnemonicParsing="false" text="Stop" />
+      <Button layoutX="327.0" layoutY="127.0" mnemonicParsing="false" onMouseReleased="#stopMouseRelease" text="Stop" />
    </children>
 </Pane>
