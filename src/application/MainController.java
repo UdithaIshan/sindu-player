@@ -2,6 +2,7 @@ package application;
 
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FilterInputStream;
@@ -11,10 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -36,9 +40,15 @@ public class MainController {
 	private long songLength;
 	private String location;
 	
+	private boolean onResume;
+	private boolean onPlay = false;
+	
 	private void stop() {
 		if(sinduPlayer != null) {
 			sinduPlayer.close();
+			onResume = false;
+			onPlay = false;
+			musicLabel.setText("");
 		}
 	}
 	
@@ -50,6 +60,7 @@ public class MainController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			onResume = true;
 ;			sinduPlayer.close();
 		}
 	}
@@ -68,6 +79,7 @@ public class MainController {
 			@Override
 			public void run() {
 				try {
+					onPlay = true;
 					sinduPlayer.play();
 				} catch (JavaLayerException e) {
 					// TODO Auto-generated catch block
@@ -92,13 +104,27 @@ public class MainController {
 			@Override
 			public void run() {
 				try {
-					sinduPlayer.play();
+					if(!onPlay) {
+						onPlay = true;
+						sinduPlayer.play();
+					}		
 				} catch (JavaLayerException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		}.start();
+	}
+	
+	private void selectSong( ) {
+		FileChooser chooser = new FileChooser();
+		chooser.getExtensionFilters().addAll(new ExtensionFilter("MP3 Files", "*.mp3"));
+		File selectedFile = chooser.showOpenDialog(null);
+		if(selectedFile != null) {
+			stop();
+			musicLabel.setText(selectedFile.getName());
+			play(selectedFile.getAbsolutePath());
+		}
 	}
 	
 	
@@ -109,7 +135,7 @@ public class MainController {
 	private Button playBtn;
 	
 	@FXML
-	private ListView listView;
+	private Label musicLabel;
 	
 	private MediaPlayer mp;
 	private Media me;
@@ -122,10 +148,16 @@ public class MainController {
 	}
 	
 	public void playMouseRelease() {
-		play("E:\\Music\\Dátha_Dara_-Ridma_Weerawardane__Dhanith_Sri__Methun_SK__Supun_Perera__Dinesh_Gamage__Dinupa_Kodagoda.mp3");
+		if(onResume)
+			resume();
+		else	
+			selectSong();
 	}
 	public void pauseMouseRelese() {
 		pause();
+	}
+	public void openFileChooser() {
+		selectSong();
 	}
 }
 
