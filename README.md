@@ -7,7 +7,7 @@
 
 Screenshots:
 
-![ss](https://github.com/UdithaIshan/sindu/blob/master/screenshots/Annotation%202020-10-08%20002958.png)
+![ss](https://github.com/UdithaIshan/sindu/blob/master/screenshots/Screenshot 2020-12-21 074330.png)
 
 
 
