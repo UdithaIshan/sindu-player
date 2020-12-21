@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -116,7 +117,7 @@ public class MainController {
 	private Button playBtn;
 	
 	@FXML
-	private ListView listView;
+	private Label musicLabel;
 	
 	private MediaPlayer mp;
 	private Media me;
@@ -141,8 +142,10 @@ public class MainController {
 		FileChooser chooser = new FileChooser();
 		chooser.getExtensionFilters().addAll(new ExtensionFilter("MP3 Files", "*.mp3"));
 		File selectedFile = chooser.showOpenDialog(null);
-		if(selectedFile != null)
+		if(selectedFile != null) {
+			musicLabel.setText(selectedFile.getName());
 			play(selectedFile.getAbsolutePath());
+		}
 	}
 }
 
