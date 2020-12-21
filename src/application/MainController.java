@@ -2,29 +2,15 @@ package application;
 
 import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FilterInputStream;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import javafx.util.Duration;
 
 import javazoom.jl.decoder.*;
 import javazoom.jl.player.Player;
@@ -136,9 +122,6 @@ public class MainController {
 	
 	@FXML
 	private Label musicLabel;
-	
-	private MediaPlayer mp;
-	private Media me;
 	
 	public void playBtnAction(ActionEvent event) {	
 	}
